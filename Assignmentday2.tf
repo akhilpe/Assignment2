@@ -14,24 +14,33 @@ provider "random" {
 
 
 resource "random_string" "random" {
-  length           = 20
+  length           = 8
   special          = true
   override_special = "@"
 }
 resource "random_password" "password" {
-  keepers = {
-      password_id = "akhil"
-  } 
+ 
   length           = 8
   special          = true
   override_special = "@"
   min_upper        = "1"
   min_lower        = "1"
-}
-
-variable "length" {
-  default = "29"
 
 }
+
+output "user" {
+  description = "Hi<user>:"
+  value = "hi akhil"
+  sensitive = true
+}
+
+output "password" {
+  description = "The password is:"
+  value = random_password.password.*.result
+  sensitive = true
+}
+
+
+
 
 
