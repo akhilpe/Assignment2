@@ -1,46 +1,29 @@
-terraform {
-  required_providers {
-    random = {
-      source  = "hashicorp/random"
-      version = "3.1.0" #Forcing which version of plugin needs to be used.
 
-    }
+
+
+resource "random_password" "password" {
+  length           = 8
+  special          = true
+  override_special = "!#$%&*()"
+  min_lower        = 1
+  min_upper        = 1
+  min_special      = 1
+
+}
+
+
+resource "null_resource" "pasres" {
+  provisioner "local-exec" {
+    command = <<EOH
+        echo "Hi ${var.username} , your password is ${random_password.password.result}" >> final.txt
+        cat final.txt
+     EOH
+
+    #interpreter = ["/bin/bash", "-c"]
+    #working_dir = "./final.txt"
   }
 }
-provider "random" {
-
+variable "username" {
+  type = string
 }
-
-
-
-resource "random_string" "random" {
-  length           = 8
-  special          = true
-  override_special = "@"
-}
-resource "random_password" "password" {
- 
-  length           = 8
-  special          = true
-  override_special = "@"
-  min_upper        = "1"
-  min_lower        = "1"
-
-}
-
-output "user" {
-  description = "Hi<user>:"
-  value = "hi akhil"
-  sensitive = true
-}
-
-output "password" {
-  description = "The password is:"
-  value = random_password.password.*.result
-  sensitive = true
-}
-
-
-
-
 
