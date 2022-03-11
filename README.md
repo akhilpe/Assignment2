@@ -63,6 +63,6 @@ Modualrization the code and kept var files and provisioner files
 
 ## Appendix
 
-Supports the use of randomness within Terraform configurations. This is a logical provider, which means that it works entirely within Terraform logic, and does not interact with any other services.
+Supports the use of randomness within Terraform configurations. This is a logical provider, which means that it works entirely within Terraform logic, and does not interact with any other services.Latest version didn't generate the password in same terminal for this we can download https://releases.hashicorp.com/terraform/0.14.10/terraform_0.14.10_windows_386.zip this terraform version
 
 # Assignment2
